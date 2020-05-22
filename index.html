@@ -38,7 +38,7 @@
     function doRequest() {
         if (document.getElementById('addressInput').value.length >= 3) {
             $.ajax({
-                async: false,
+                async: true,
                 data: {request: $('input#addressInput').val()},
                 method: 'POST',
                 url: '/api.php',
@@ -58,7 +58,7 @@
         $('input#addressInput').val(address);
         $('div#hintList').html('');
         $.ajax({
-            async: false,
+            async: true,
             data: {todb: address},
             method: 'POST',
             url: '/api.php',
