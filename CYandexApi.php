@@ -19,10 +19,10 @@ class CYandexApi
         $jsonData = json_decode(curl_exec($curl), true);
         curl_close($curl);
 
-        file_put_contents('example.json', json_encode($jsonData, JSON_UNESCAPED_UNICODE));
-
         for($i=0; $i<6; $i++) {
-            $this->hintList[] = ['name' => $jsonData['response']['GeoObjectCollection']['featureMember'][$i]['GeoObject']['metaDataProperty']['GeocoderMetaData']['text']];
+            if(!empty($jsonData['response']['GeoObjectCollection']['featureMember'][$i]['GeoObject']['metaDataProperty']['GeocoderMetaData']['text'])) {
+                $this->hintList[] = ['name' => $jsonData['response']['GeoObjectCollection']['featureMember'][$i]['GeoObject']['metaDataProperty']['GeocoderMetaData']['text']];
+            }
         }
     }
 }
